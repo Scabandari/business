@@ -15,7 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
+from rest_framework.urlpatterns import format_suffix_patterns
+from api import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^api/categories/$', views.CategoryList.as_view()),
+    url(r'^api/categories/(?P<pk>[0-9]+)/$', views.ProductList.as_view()),
+    url(r'^api/clients/$', views.ClientList.as_view()),
+    url(r'^api/RFQ/', views.RFQView.as_view()),
 ]
+
+urlpatterns = format_suffix_patterns(urlpatterns)
