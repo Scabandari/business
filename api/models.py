@@ -44,6 +44,7 @@ class Product(models.Model):
         return self.price * discount
 
 
+# Request For Quote
 class RFQ(models.Model):
     account_id = models.ForeignKey(Client, on_delete=models.CASCADE)
     product_number = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -55,6 +56,7 @@ class RFQ(models.Model):
             .format(self.account_id, self.product_number, self.product_category, self.quantity)
 
 
+# Response For Price
 class RFP(models.Model):
     RFQ_id = models.ForeignKey(RFQ, on_delete=models.CASCADE)
     unit_price = models.FloatField(default=1)

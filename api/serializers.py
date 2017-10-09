@@ -32,9 +32,7 @@ class RFQSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
     def create(self, validated_data):
-        # rfq = RFQ.objects.create(**validated_data)
         return RFQ.objects.create(**validated_data)
-
 
 
 class RFPSerializer(serializers.ModelSerializer):
@@ -42,3 +40,6 @@ class RFPSerializer(serializers.ModelSerializer):
     class Meta:
         model = RFP
         fields = '__all__'
+
+    def create(self, validated_data):
+        return RFP.objects.create(**validated_data)
