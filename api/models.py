@@ -1,5 +1,6 @@
 from django.db import models
-
+from pb_model.models import ProtoBufMixin
+from . import request_for_quote_pb2
 from django.db import models
 
 # Create your models here.
@@ -45,7 +46,8 @@ class Product(models.Model):
 
 
 # Request For Quote
-class RFQ(models.Model):
+class RFQ(ProtoBufMixin, models.Model):
+    pb_model = RFQ
     account_id = models.ForeignKey(Client, on_delete=models.CASCADE)
     product_number = models.ForeignKey(Product, on_delete=models.CASCADE)
     product_category = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -57,7 +59,7 @@ class RFQ(models.Model):
 
 
 # Response For Price
-class RFP(models.Model):
+class RFP(ProtoBufMixin, models.Model):
     RFQ_id = models.ForeignKey(RFQ, on_delete=models.CASCADE)
     unit_price = models.FloatField(default=1)
     date_created = models.DateField(auto_now=False, auto_now_add=True)
