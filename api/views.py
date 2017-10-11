@@ -11,6 +11,8 @@ from django.utils.six import BytesIO
 from rest_framework.parsers import JSONParser
 from django.http import JsonResponse
 from datetime import date, timedelta
+from request_for_quote_pb2 import RFQ as RFQ_pb
+from request_for_quote_pb2 import RFP as RFP_pb
 
 
 class CategoryList(APIView):
@@ -83,6 +85,11 @@ class RFQView(APIView):
             return Response(rfp_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+class RFQ_pb(APIView):
+
+    def post(self, request, format=None):
+        rfq = RFQ_pb()
 
 
 

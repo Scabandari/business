@@ -47,7 +47,7 @@ class Product(models.Model):
 
 # Request For Quote
 class RFQ(ProtoBufMixin, models.Model):
-    pb_model = RFQ
+    pb_model = request_for_quote_pb2.RFQ
     account_id = models.ForeignKey(Client, on_delete=models.CASCADE)
     product_number = models.ForeignKey(Product, on_delete=models.CASCADE)
     product_category = models.ForeignKey(Category, on_delete=models.CASCADE)

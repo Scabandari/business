@@ -23,7 +23,8 @@ urlpatterns = [
     url(r'^api/categories/$', views.CategoryList.as_view()),
     url(r'^api/categories/(?P<pk>[0-9]+)/$', views.ProductList.as_view()),
     url(r'^api/clients/$', views.ClientList.as_view()),
-    url(r'^api/RFQ/', views.RFQView.as_view()),
+    url(r'^api/RFQ/$', views.RFQView.as_view()),
+    url(r'^api/RFQ/pb$' views.RFQ_pb.as_view())
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
