@@ -19,44 +19,23 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   name='request_for_quote.proto',
   package='protobuf',
   syntax='proto2',
-  serialized_pb=_b('\n\x17request_for_quote.proto\x12\x08protobuf\"]\n\x03RFQ\x12\x10\n\x08quantity\x18\x01 \x02(\x05\x12\x12\n\naccount_id\x18\x02 \x02(\x05\x12\x16\n\x0eproduct_number\x18\x03 \x02(\x05\x12\x18\n\x10product_category\x18\x04 \x02(\x05\"i\n\x03RFP\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x10\n\x08quantity\x18\x02 \x02(\x05\x12\x12\n\naccount_id\x18\x03 \x02(\x05\x12\x16\n\x0eproduct_number\x18\x04 \x02(\x05\x12\x18\n\x10product_category\x18\x05 \x02(\t')
+  serialized_pb=_b('\n\x17request_for_quote.proto\x12\x08protobuf\"\"\n\tClient_pb\x12\x15\n\rbusiness_name\x18\x01 \x02(\t\"R\n\nProduct_pb\x12\x0c\n\x04name\x18\x01 \x02(\t\x12\r\n\x05price\x18\x02 \x02(\x02\x12\'\n\x08\x63\x61tegory\x18\x03 \x02(\x0b\x32\x15.protobuf.Category_pb\"\x1b\n\x0b\x43\x61tegory_pb\x12\x0c\n\x04name\x18\x01 \x02(\t\"\xa2\x01\n\x06RFQ_pb\x12\x10\n\x08quantity\x18\x01 \x02(\x05\x12\'\n\naccount_id\x18\x02 \x02(\x0b\x32\x13.protobuf.Client_pb\x12,\n\x0eproduct_number\x18\x03 \x02(\x0b\x32\x14.protobuf.Product_pb\x12/\n\x10product_category\x18\x04 \x02(\x0b\x32\x15.protobuf.Category_pb\"l\n\x06RFP_pb\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x10\n\x08quantity\x18\x02 \x02(\x05\x12\x12\n\naccount_id\x18\x03 \x02(\x05\x12\x16\n\x0eproduct_number\x18\x04 \x02(\x05\x12\x18\n\x10product_category\x18\x05 \x02(\t')
 )
 
 
 
 
-_RFQ = _descriptor.Descriptor(
-  name='RFQ',
-  full_name='protobuf.RFQ',
+_CLIENT_PB = _descriptor.Descriptor(
+  name='Client_pb',
+  full_name='protobuf.Client_pb',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='quantity', full_name='protobuf.RFQ.quantity', index=0,
-      number=1, type=5, cpp_type=1, label=2,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='account_id', full_name='protobuf.RFQ.account_id', index=1,
-      number=2, type=5, cpp_type=1, label=2,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='product_number', full_name='protobuf.RFQ.product_number', index=2,
-      number=3, type=5, cpp_type=1, label=2,
-      has_default_value=False, default_value=0,
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      options=None),
-    _descriptor.FieldDescriptor(
-      name='product_category', full_name='protobuf.RFQ.product_category', index=3,
-      number=4, type=5, cpp_type=1, label=2,
-      has_default_value=False, default_value=0,
+      name='business_name', full_name='protobuf.Client_pb.business_name', index=0,
+      number=1, type=9, cpp_type=9, label=2,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
@@ -73,47 +52,175 @@ _RFQ = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=37,
-  serialized_end=130,
+  serialized_end=71,
 )
 
 
-_RFP = _descriptor.Descriptor(
-  name='RFP',
-  full_name='protobuf.RFP',
+_PRODUCT_PB = _descriptor.Descriptor(
+  name='Product_pb',
+  full_name='protobuf.Product_pb',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='id', full_name='protobuf.RFP.id', index=0,
+      name='name', full_name='protobuf.Product_pb.name', index=0,
+      number=1, type=9, cpp_type=9, label=2,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='price', full_name='protobuf.Product_pb.price', index=1,
+      number=2, type=2, cpp_type=6, label=2,
+      has_default_value=False, default_value=float(0),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='category', full_name='protobuf.Product_pb.category', index=2,
+      number=3, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=73,
+  serialized_end=155,
+)
+
+
+_CATEGORY_PB = _descriptor.Descriptor(
+  name='Category_pb',
+  full_name='protobuf.Category_pb',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='name', full_name='protobuf.Category_pb.name', index=0,
+      number=1, type=9, cpp_type=9, label=2,
+      has_default_value=False, default_value=_b("").decode('utf-8'),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=157,
+  serialized_end=184,
+)
+
+
+_RFQ_PB = _descriptor.Descriptor(
+  name='RFQ_pb',
+  full_name='protobuf.RFQ_pb',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='quantity', full_name='protobuf.RFQ_pb.quantity', index=0,
+      number=1, type=5, cpp_type=1, label=2,
+      has_default_value=False, default_value=0,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='account_id', full_name='protobuf.RFQ_pb.account_id', index=1,
+      number=2, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='product_number', full_name='protobuf.RFQ_pb.product_number', index=2,
+      number=3, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+    _descriptor.FieldDescriptor(
+      name='product_category', full_name='protobuf.RFQ_pb.product_category', index=3,
+      number=4, type=11, cpp_type=10, label=2,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  syntax='proto2',
+  extension_ranges=[],
+  oneofs=[
+  ],
+  serialized_start=187,
+  serialized_end=349,
+)
+
+
+_RFP_PB = _descriptor.Descriptor(
+  name='RFP_pb',
+  full_name='protobuf.RFP_pb',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='id', full_name='protobuf.RFP_pb.id', index=0,
       number=1, type=5, cpp_type=1, label=1,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='quantity', full_name='protobuf.RFP.quantity', index=1,
+      name='quantity', full_name='protobuf.RFP_pb.quantity', index=1,
       number=2, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='account_id', full_name='protobuf.RFP.account_id', index=2,
+      name='account_id', full_name='protobuf.RFP_pb.account_id', index=2,
       number=3, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='product_number', full_name='protobuf.RFP.product_number', index=3,
+      name='product_number', full_name='protobuf.RFP_pb.product_number', index=3,
       number=4, type=5, cpp_type=1, label=2,
       has_default_value=False, default_value=0,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
     _descriptor.FieldDescriptor(
-      name='product_category', full_name='protobuf.RFP.product_category', index=4,
+      name='product_category', full_name='protobuf.RFP_pb.product_category', index=4,
       number=5, type=9, cpp_type=9, label=2,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -131,27 +238,55 @@ _RFP = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=132,
-  serialized_end=237,
+  serialized_start=351,
+  serialized_end=459,
 )
 
-DESCRIPTOR.message_types_by_name['RFQ'] = _RFQ
-DESCRIPTOR.message_types_by_name['RFP'] = _RFP
+_PRODUCT_PB.fields_by_name['category'].message_type = _CATEGORY_PB
+_RFQ_PB.fields_by_name['account_id'].message_type = _CLIENT_PB
+_RFQ_PB.fields_by_name['product_number'].message_type = _PRODUCT_PB
+_RFQ_PB.fields_by_name['product_category'].message_type = _CATEGORY_PB
+DESCRIPTOR.message_types_by_name['Client_pb'] = _CLIENT_PB
+DESCRIPTOR.message_types_by_name['Product_pb'] = _PRODUCT_PB
+DESCRIPTOR.message_types_by_name['Category_pb'] = _CATEGORY_PB
+DESCRIPTOR.message_types_by_name['RFQ_pb'] = _RFQ_PB
+DESCRIPTOR.message_types_by_name['RFP_pb'] = _RFP_PB
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-RFQ = _reflection.GeneratedProtocolMessageType('RFQ', (_message.Message,), dict(
-  DESCRIPTOR = _RFQ,
+Client_pb = _reflection.GeneratedProtocolMessageType('Client_pb', (_message.Message,), dict(
+  DESCRIPTOR = _CLIENT_PB,
   __module__ = 'request_for_quote_pb2'
-  # @@protoc_insertion_point(class_scope:protobuf.RFQ)
+  # @@protoc_insertion_point(class_scope:protobuf.Client_pb)
   ))
-_sym_db.RegisterMessage(RFQ)
+_sym_db.RegisterMessage(Client_pb)
 
-RFP = _reflection.GeneratedProtocolMessageType('RFP', (_message.Message,), dict(
-  DESCRIPTOR = _RFP,
+Product_pb = _reflection.GeneratedProtocolMessageType('Product_pb', (_message.Message,), dict(
+  DESCRIPTOR = _PRODUCT_PB,
   __module__ = 'request_for_quote_pb2'
-  # @@protoc_insertion_point(class_scope:protobuf.RFP)
+  # @@protoc_insertion_point(class_scope:protobuf.Product_pb)
   ))
-_sym_db.RegisterMessage(RFP)
+_sym_db.RegisterMessage(Product_pb)
+
+Category_pb = _reflection.GeneratedProtocolMessageType('Category_pb', (_message.Message,), dict(
+  DESCRIPTOR = _CATEGORY_PB,
+  __module__ = 'request_for_quote_pb2'
+  # @@protoc_insertion_point(class_scope:protobuf.Category_pb)
+  ))
+_sym_db.RegisterMessage(Category_pb)
+
+RFQ_pb = _reflection.GeneratedProtocolMessageType('RFQ_pb', (_message.Message,), dict(
+  DESCRIPTOR = _RFQ_PB,
+  __module__ = 'request_for_quote_pb2'
+  # @@protoc_insertion_point(class_scope:protobuf.RFQ_pb)
+  ))
+_sym_db.RegisterMessage(RFQ_pb)
+
+RFP_pb = _reflection.GeneratedProtocolMessageType('RFP_pb', (_message.Message,), dict(
+  DESCRIPTOR = _RFP_PB,
+  __module__ = 'request_for_quote_pb2'
+  # @@protoc_insertion_point(class_scope:protobuf.RFP_pb)
+  ))
+_sym_db.RegisterMessage(RFP_pb)
 
 
 # @@protoc_insertion_point(module_scope)

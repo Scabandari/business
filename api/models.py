@@ -6,21 +6,24 @@ from django.db import models
 # Create your models here.
 
 
-class Client(models.Model):
+class Client(ProtoBufMixin, models.Model):
+    pb_model = request_for_quote_pb2.Client_pb
     business_name = models.CharField(max_length=200)
 
     def __str__(self):
         return self.business_name
 
 
-class Category(models.Model):
+class Category(ProtoBufMixin, models.Model):
+    pb_model = request_for_quote_pb2.Category_pb
     name = models.CharField(max_length=200, unique=True)
 
     def __str__(self):
         return self.name
 
 
-class Product(models.Model):
+class Product(ProtoBufMixin, models.Model):
+    pb_model = request_for_quote_pb2.Product_pb
     name = models.CharField(max_length=100, unique=True)
     price = models.FloatField()   # for one item
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -47,7 +50,7 @@ class Product(models.Model):
 
 # Request For Quote
 class RFQ(ProtoBufMixin, models.Model):
-    pb_model = request_for_quote_pb2.RFQ
+    pb_model = request_for_quote_pb2.RFQ_pb
     account_id = models.ForeignKey(Client, on_delete=models.CASCADE)
     product_number = models.ForeignKey(Product, on_delete=models.CASCADE)
     product_category = models.ForeignKey(Category, on_delete=models.CASCADE)
@@ -60,7 +63,9 @@ class RFQ(ProtoBufMixin, models.Model):
 
 # Response For Price
 class RFP(ProtoBufMixin, models.Model):
+    pb_model = request_for_quote_pb2.RFP_pb
     RFQ_id = models.ForeignKey(RFQ, on_delete=models.CASCADE)
     unit_price = models.FloatField(default=1)
     date_created = models.DateField(auto_now=False, auto_now_add=True)
     price_expiration = models.DateField()  # 2 weeks after creation of RFP
+    datetime_field = models.DatetimeField(default=timezone.now())

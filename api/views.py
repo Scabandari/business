@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
-from django.http import Http404
+from django.http import Http404, HttpResponse
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -11,9 +11,8 @@ from django.utils.six import BytesIO
 from rest_framework.parsers import JSONParser
 from django.http import JsonResponse
 from datetime import date, timedelta
-from request_for_quote_pb2 import RFQ as RFQ_pb
-from request_for_quote_pb2 import RFP as RFP_pb
-
+from .request_for_quote_pb2 import RFQ_pb, RFP_pb, Product_pb, Client_pb, Category_pb
+from . import request_for_quote_pb2
 
 class CategoryList(APIView):
 
@@ -86,10 +85,17 @@ class RFQView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-class RFQ_pb(APIView):
+class RFQPbView(APIView):
+
+    def get(self, request, format=None):
+        rfq = RFQ.objects.get(pk=1)
+        rfq = rfq.to_pb()
+        return HttpResponse(rfq, content_type='application/octet-stream')
 
     def post(self, request, format=None):
-        rfq = RFQ_pb()
+        rfq = request_for_quote_pb2.RFQ_pb.ParseFromString(request.body)
+
+
 
 
 
