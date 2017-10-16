@@ -2,6 +2,8 @@ from django.db import models
 from pb_model.models import ProtoBufMixin
 from . import request_for_quote_pb2
 from django.db import models
+from datetime import datetime, timedelta, tzinfo
+from django.utils import timezone
 
 # Create your models here.
 
@@ -27,9 +29,16 @@ class Product(ProtoBufMixin, models.Model):
     name = models.CharField(max_length=100, unique=True)
     price = models.FloatField()   # for one item
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    product_number = models.IntegerField()
+
+    # need the product_number field cuz when pb arrives by POST data not inclucded without
 
     def __str__(self):
         return self.name
+
+    def set_product_number(self):
+        self.product_number = self.pk
+        self.save()
 
     def price_for_quote(self, number_units):
         discount = 1
@@ -66,6 +75,6 @@ class RFP(ProtoBufMixin, models.Model):
     pb_model = request_for_quote_pb2.RFP_pb
     RFQ_id = models.ForeignKey(RFQ, on_delete=models.CASCADE)
     unit_price = models.FloatField(default=1)
-    date_created = models.DateField(auto_now=False, auto_now_add=True)
-    price_expiration = models.DateField()  # 2 weeks after creation of RFP
-    datetime_field = models.DatetimeField(default=timezone.now())
+    date_created = models.DateTimeField(default=datetime.now, blank=True)  # ? should be DatetimeField(default=timezone.now())
+    price_expiration = models.DateTimeField(default=datetime.now, blank=True) # 2 weeks after creation of RFP
+   # datetime_field = models.DatetimeField(default=timezone.now())

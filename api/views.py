@@ -13,6 +13,7 @@ from django.http import JsonResponse
 from datetime import date, timedelta
 from .request_for_quote_pb2 import RFQ_pb, RFP_pb, Product_pb, Client_pb, Category_pb
 from . import request_for_quote_pb2
+from datetime import datetime
 
 class CategoryList(APIView):
 
@@ -68,7 +69,7 @@ class RFQView(APIView):
             product_number = rfq.product_number.id
             product = Product.objects.get(pk=product_number)
             price = product.price_for_quote(quantity)
-            expiration = date.today() + timedelta(days=14)
+            expiration = datetime.now() + timedelta(days=14)
             rfp = RFP(RFQ_id=rfq, unit_price=price, price_expiration=expiration)
             rfp.save()
             data = {
@@ -93,7 +94,21 @@ class RFQPbView(APIView):
         return HttpResponse(rfq, content_type='application/octet-stream')
 
     def post(self, request, format=None):
-        rfq = request_for_quote_pb2.RFQ_pb.ParseFromString(request.body)
+        rfq = RFQ_pb.FromString(request.body)
+        request_for_quote = RFQ()
+        request_for_quote.from_pb(rfq)
+        #rfq.save()
+        product_pb = rfq.product_number
+        product_number = Product.objects.get(pk=product_pb.product_number)
+        product = Product()
+        product.from_pb(product_pb)
+        price = product.price_for_quote(rfq.quantity)
+        date_time = datetime.now()
+        expiration_date = date_time + timedelta(days=14)
+        rfp = RFP(RFQ_id=request_for_quote, price_expiration=expiration_date, unit_price=price)
+        rfp_pb = RFP_pb()
+       # rfp_pb.SerializeToString(rfp.to_pb())
+        return HttpResponse(rfp.to_pb(), content_type="application/octet-stream")
 
 
 
