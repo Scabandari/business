@@ -53,6 +53,7 @@ class ClientList(APIView):
 
 
 # http://www.django-rest-framework.org/api-guide/serializers/#deserializing-objects   'saving instances'
+# This view is for JSON rest post and get
 class RFQView(APIView):
 
     def get(self, request, format=None):
@@ -74,9 +75,9 @@ class RFQView(APIView):
             rfp.save()
             data = {
                 'RFQ_id': id,
-                'unit_price' : price,
-                'date_created' : date.today(),
-                'price_expiration' : expiration
+                'unit_price': price,
+                'date_created': datetime.now(),
+                'price_expiration': expiration
             }
             rfp_serializer = RFPSerializer(data=data)
             if rfp_serializer.is_valid():
@@ -85,7 +86,7 @@ class RFQView(APIView):
             return Response(rfp_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-
+# This view is for PB post and get
 class RFQPbView(APIView):
 
     def get(self, request, format=None):
