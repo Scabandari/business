@@ -1,0 +1,8 @@
+ rfq_data = {
+        "quantity": 2000,
+        "account_id": 1,  # Client's pk
+        "product_number": 2, # Product's pk
+        "product_category": 1  # Category's pk
+    }
+    
+   This code snippet above is taken from client code. rfq_data is just a name, you can name your json whatever you want, quantity can be any positive number, account_id corresponds to my Client models and 1 is Canadian Tire. product_number corresponds to my Product models primary key so high numbers won't work since I only have created one or two Clients and product_category is similar. 

@@ -25,7 +25,6 @@ class ClientSerializer(serializers.ModelSerializer):
 
 
 class RFQSerializer(serializers.ModelSerializer):
-    #account_id = ClientSerializer(read_only=True)
 
     class Meta:
         model = RFQ

@@ -5,8 +5,6 @@ from django.db import models
 from datetime import datetime, timedelta, tzinfo
 from django.utils import timezone
 
-# Create your models here.
-
 
 class Client(ProtoBufMixin, models.Model):
     pb_model = request_for_quote_pb2.Client_pb
@@ -75,6 +73,5 @@ class RFP(ProtoBufMixin, models.Model):
     pb_model = request_for_quote_pb2.RFP_pb
     RFQ_id = models.ForeignKey(RFQ, on_delete=models.CASCADE)
     unit_price = models.FloatField(default=1)
-    date_created = models.DateTimeField(default=datetime.now, blank=True)  # ? should be DatetimeField(default=timezone.now())
-    price_expiration = models.DateTimeField(default=datetime.now, blank=True) # 2 weeks after creation of RFP
-   # datetime_field = models.DatetimeField(default=timezone.now())
+    date_created = models.DateTimeField(default=datetime.now, blank=True)
+    price_expiration = models.DateTimeField(default=datetime.now, blank=True)

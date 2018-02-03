@@ -15,6 +15,7 @@ from .request_for_quote_pb2 import RFQ_pb, RFP_pb, Product_pb, Client_pb, Catego
 from . import request_for_quote_pb2
 from datetime import datetime
 
+
 class CategoryList(APIView):
 
     def get(self, request):
@@ -86,6 +87,7 @@ class RFQView(APIView):
             return Response(rfp_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 # This view is for PB post and get
 class RFQPbView(APIView):
 
@@ -98,17 +100,13 @@ class RFQPbView(APIView):
         rfq = RFQ_pb.FromString(request.body)
         request_for_quote = RFQ()
         request_for_quote.from_pb(rfq)
-        #rfq.save()
         product_pb = rfq.product_number
-        product_number = Product.objects.get(pk=product_pb.product_number)
         product = Product()
         product.from_pb(product_pb)
         price = product.price_for_quote(rfq.quantity)
         date_time = datetime.now()
         expiration_date = date_time + timedelta(days=14)
         rfp = RFP(RFQ_id=request_for_quote, price_expiration=expiration_date, unit_price=price)
-        rfp_pb = RFP_pb()
-       # rfp_pb.SerializeToString(rfp.to_pb())
         return HttpResponse(rfp.to_pb(), content_type="application/octet-stream")
 
 
